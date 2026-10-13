@@ -1,0 +1,882 @@
+[
+  {
+    "input": "Write the initial script creation, saving, and execution steps for a basic script named 'firstExample.sh' containing commands to display current working directory, file list, and date.",
+    "output": {
+      "command_to_create": "vi firstExample.sh",
+      "script_content": "pwd\nls\ndate",
+      "editor_save_exit_sequence": "ESC followed by :wq",
+      "permission_command": "chmod +x firstExample.sh",
+      "execution_command": "./firstExample.sh or sh firstExample.sh"
+    }
+  },
+  {
+    "input": "Explain how comments are formatted in shell scripts, including single-line and multiline comments.",
+    "output": {
+      "single_line_syntax": "# <comment_text>",
+      "single_line_example": "# Author : Linus Torvalds",
+      "multiline_syntax": ": ' ... '"
+    }
+  },
+  {
+    "input": "Demonstrate the use of the read command with prompt, standard input, and displaying variables via echo.",
+    "output": {
+      "prompt_read_syntax": "read -p \"hi\" a",
+      "standard_read_syntax": "read NAME",
+      "access_variable_syntax": "$NAME",
+      "example_echo": "echo \"Hello, $NAME\""
+    }
+  },
+  {
+    "input": "Classify the following variable names into valid and invalid identifiers: _ALI, 2_VAR, TOKEN_A, -VARIABLE, VAR_1, VAR1-VAR2, VAR_2, VAR_A!.",
+    "output": {
+      "valid": ["_ALI", "TOKEN_A", "VAR_1", "VAR_2"],
+      "invalid": ["2_VAR", "-VARIABLE", "VAR1-VAR2", "VAR_A!"],
+      "naming_rules": "Variable names can contain only letters (a-z, A-Z), numbers (0-9), or underscore (_). They cannot begin with a digit or contain hyphens/special characters."
+    }
+  },
+  {
+    "input": "Show how to define, access, and unset a shell variable.",
+    "output": {
+      "definition_syntax": "variable_name=variable_value",
+      "definition_example": "NAME=\"VIT University\"",
+      "access_syntax": "$NAME",
+      "unset_syntax": "unset NAME",
+      "behavior_after_unset": "The variable is removed from the tracked list and its value cannot be accessed."
+    }
+  },
+  {
+    "input": "Provide the syntax for evaluating basic arithmetic expressions using expr and modern Bash arithmetic expansion.",
+    "output": {
+      "external_expr_syntax": "val=`expr 2 + 2`",
+      "modern_bash_syntax": "var=$((3+9))"
+    }
+  },
+  {
+    "input": "List all standard arithmetic operators supported with expr and provide example expressions.",
+    "output": {
+      "+": "`expr $a + $b`",
+      "-": "`expr $a - $b`",
+      "*": "`expr $a \\* $b`",
+      "/": "`expr $b / $a`",
+      "%": "`expr $b % $a`",
+      "=": "a=$b",
+      "==": "[ $a == $b ]",
+      "!=": "[ $a != $b ]"
+    }
+  },
+  {
+    "input": "List the relational operators used for numeric comparisons in shell scripts and describe their function.",
+    "output": {
+      "-eq": "Checks if the values of two operands are equal ([ $a -eq $b ])",
+      "-ne": "Checks if the values of two operands are not equal ([ $a -ne $b ])",
+      "-gt": "Checks if the left operand is greater than the right operand ([ $a -gt $b ])",
+      "-lt": "Checks if the left operand is less than the right operand ([ $a -lt $b ])",
+      "-ge": "Checks if the left operand is greater than or equal to the right operand ([ $a -ge $b ])",
+      "-le": "Checks if the left operand is less than or equal to the right operand ([ $a -le $b ])"
+    }
+  },
+  {
+    "input": "Detail the boolean operators available in shell condition testing.",
+    "output": {
+      "!": "Logical NOT: Inverts a condition ([ ! false ])",
+      "-o": "Logical OR: True if either operand condition is true ([ $a -lt 20 -o $b -gt 100 ])",
+      "-a": "Logical AND: True if both operand conditions are true ([ $a -lt 20 -a $b -gt 100 ])"
+    }
+  },
+  {
+    "input": "Summarize the string comparison and inspection operators used in test conditions.",
+    "output": {
+      "=": "Checks if two string operands are equal ([ $a = $b ])",
+      "!=": "Checks if two string operands are not equal ([ $a != $b ])",
+      "-z": "Returns true if string operand length is zero ([ -z $a ])",
+      "-n": "Returns true if string operand length is non-zero ([ -n $a ])",
+      "str": "Returns true if the string is not empty ([ $a ])"
+    }
+  },
+  {
+    "input": "Show the script to swap two numbers using a temporary third variable.",
+    "output": {
+      "script": "echo \"Enter any two numbers\"\nread a\nread b\necho \"Before swapping $a $b\"\nc=$a\na=$b\nb=$c\necho \"After swapping $a $b\""
+    }
+  },
+  {
+    "input": "Write the general syntax and an example for simple if...fi statements.",
+    "output": {
+      "syntax": "if COMMAND/CONDITION\nthen\n  STATEMENTS\nfi",
+      "example": "if [ $num -gt 0 ]\nthen\n  echo \"The number is non-zero positive\"\nfi",
+      "command_check_example": "if mv testing.sh test.sh\nthen\n  echo File is renamed successfully\nfi"
+    }
+  },
+  {
+    "input": "Provide the syntax and an example for if...else...fi statements.",
+    "output": {
+      "syntax": "if COMMAND/CONDITION\nthen\n  STATEMENTS_1\nelse\n  STATEMENTS_2\nfi",
+      "example": "if [ $a -gt $b ]\nthen\n  echo \"$a is greater\"\nelse\n  echo \"$b is greater\"\nfi"
+    }
+  },
+  {
+    "input": "Write the syntax and an example for if...elif...else...fi statements evaluating positive, zero, and negative values.",
+    "output": {
+      "syntax": "if TEST-COMMAND_1\nthen\n  STATEMENTS_1\nelif TEST-COMMAND_2\nthen\n  STATEMENTS_2\nelse\n  STATEMENTS_3\nfi",
+      "example": "if [ $num -gt 0 ]\nthen\n  echo \"Number is positive\"\nelif [ $num -eq 0 ]\nthen\n  echo \"Number is zero\"\nelse\n  echo \"Number is negative\"\nfi"
+    }
+  },
+  {
+    "input": "Provide the syntax and a working example of a case...esac statement matching fruits.",
+    "output": {
+      "syntax": "case word in\n  pattern1)\n    Statement(s) ;;\n  pattern2)\n    Statement(s) ;;\n  *)\n    Default Statement(s) ;;\nesac",
+      "example": "FRUIT=\"kiwi\"\ncase \"$FRUIT\" in\n  \"apple\") echo \"Apple pie is quite tasty.\" ;;\n  \"banana\") echo \"I like banana nut bread.\" ;;\n  \"kiwi\") echo \"New Zealand is famous for kiwi.\" ;;\nesac"
+    }
+  },
+  {
+    "input": "Show the syntax and an incremental counter example for a while loop from 0 to 9.",
+    "output": {
+      "syntax": "while condition\ndo\n  Statement(s)\ndone",
+      "example": "a=0\nwhile [ $a -lt 10 ]\ndo\n  echo $a\n  a=`expr $a + 1`\ndone"
+    }
+  },
+  {
+    "input": "Show the two formats of the for loop: iterating over a word list and C-style loop for calculating factorial.",
+    "output": {
+      "word_list_format": "for var in 0 1 2 3 4 5 6 7 8 9\ndo\n  echo $var\ndone",
+      "c_style_format": "for((i=1;$i<=$n;i++))\ndo\n  fact=`expr $fact \\* $i`\ndone"
+    }
+  },
+  {
+    "input": "Show the syntax and an example of an until loop counting up to 10.",
+    "output": {
+      "syntax": "until command\ndo\n  Statement(s)\ndone",
+      "example": "a=0\nuntil [ ! $a -lt 10 ]\ndo\n  echo $a\n  a=`expr $a + 1`\ndone"
+    }
+  },
+  {
+    "input": "What are the loop control statements used to break or skip iterations in shell scripts?",
+    "output": {
+      "break": "Stops the execution of the loop and exits it.",
+      "continue": "Skips the remainder of the current iteration and resumes with the next iteration."
+    }
+  },
+  {
+    "input": "List the echo escape sequences for shell substitution and their meanings.",
+    "output": {
+      "\\\\": "backslash",
+      "\\a": "alert (BEL)",
+      "\\b": "backspace",
+      "\\c": "suppress trailing newline",
+      "\\f": "form feed",
+      "\\n": "new line",
+      "\\r": "carriage return",
+      "\\t": "horizontal tab",
+      "\\v": "vertical tab"
+    }
+  },
+  {
+    "input": "List all special shell variables and their descriptions.",
+    "output": {
+      "$0": "The filename of the current script.",
+      "$n": "Positional arguments corresponding to argument position ($1, $2, etc.).",
+      "$#": "The number of arguments supplied to a script.",
+      "$*": "All arguments double quoted together ($1 $2).",
+      "$@": "All arguments individually double quoted (\"$1\" \"$2\").",
+      "$?": "The exit status of the last command executed.",
+      "$$": "The process number (PID) of the current shell / script.",
+      "$!": "The process number of the last background command."
+    }
+  },
+  {
+    "input": "Demonstrate the syntax for declaring and indexing arrays in a shell script.",
+    "output": {
+      "declaration": "NAME[0]=\"Mango\"\nNAME[1]=\"Orange\"\nNAME[2]=\"Grape\"\nNAME[3]=\"Apple\"\nNAME[4]=\"Banana\"",
+      "access_single_element": "${NAME[0]}",
+      "print_all_elements": "${NAME[*]} or ${NAME[@]}"
+    }
+  },
+  {
+    "input": "How is a SheBang (#!) structured in shell scripting and where must it appear?",
+    "output": {
+      "syntax": "#!/bin/bash",
+      "purpose": "Instructs the operating system kernel to execute the script using the specified interpreter (/bin/bash).",
+      "location": "Must appear on the very first line of the script."
+    }
+  },
+  {
+    "input": "Write a Hello World Bash script and the commands to create, grant permissions, and run it.",
+    "output": {
+      "script_path": "bin/hello_world.sh",
+      "script_content": "#!/bin/bash\necho \"Hello World\"",
+      "permission_command": "chmod u+rwx bin/hello_world.sh",
+      "run_command": "bash hello_world.sh"
+    }
+  },
+  {
+    "input": "Write a Bash script defining multiple variables (name and age) and displaying them using echo.",
+    "output": {
+      "script": "#!/bin/bash\n# Declaration of variables\nname=Tom\nage=12\n# Displaying variables\necho $name $age",
+      "expected_output": "Tom 12"
+    }
+  },
+  {
+    "input": "Write a Bash script to read, store, and display numeric user input.",
+    "output": {
+      "script": "#!/bin/bash\necho \"Enter a number:\"\nread num\necho \"The number is: $num\"",
+      "sample_input": "12",
+      "sample_output": "The number is: 12"
+    }
+  },
+  {
+    "input": "Write a Bash script to read user input with a prompt message using read -p.",
+    "output": {
+      "script": "#!/bin/bash\nread -p \"Enter a number:\" num\necho \"The number is: $num\"",
+      "sample_input": "12",
+      "sample_output": "The number is: 12"
+    }
+  },
+  {
+    "input": "Write a Bash script to concatenate two string variables into a third variable.",
+    "output": {
+      "script": "#!/bin/bash\nname='My name is Tom.'\nage='My age is 12.'\ninfo=\"${name} ${age}\"\necho \"Result: $info\"",
+      "expected_output": "Result: My name is Tom. My age is 12."
+    }
+  },
+  {
+    "input": "Write a Bash script that takes two command line arguments for name and age and prints them.",
+    "output": {
+      "script": "#!/bin/bash\nname=$1\nage=$2\necho \"My name is $name. My age is $age.\"",
+      "execution_example": "bash var_example5.sh Tom 12",
+      "expected_output": "My name is Tom. My age is 12."
+    }
+  },
+  {
+    "input": "Write a Bash script to read an environment variable name from user input and print its dynamic value using indirect expansion.",
+    "output": {
+      "script": "#!/bin/bash\nread -p \"Enter an Environment Variable name:\" var\necho \"Environment:${!var}\"",
+      "sample_input": "HOME",
+      "sample_output": "Environment:/home/anonnya"
+    }
+  },
+  {
+    "input": "Write a Bash script to calculate the sum of two predefined variables using $((...)).",
+    "output": {
+      "script": "#!/bin/bash\nnum1=10\nnum2=20\nsum=$(($num1+$num2))\necho \"The Sum is: $sum\"",
+      "expected_output": "The Sum is: 30"
+    }
+  },
+  {
+    "input": "Write a Bash script to calculate the difference between two predefined numbers.",
+    "output": {
+      "script": "#!/bin/bash\nnum1=30\nnum2=20\ndif=$(($num1-$num2))\necho \"The difference is: $dif\"",
+      "expected_output": "The difference is: 10"
+    }
+  },
+  {
+    "input": "Write a Bash script to divide two predefined variables using $((...)).",
+    "output": {
+      "script": "#!/bin/bash\nnum1=30\nnum2=5\ndiv=$(($num1/$num2))\necho \"The division is: $div\"",
+      "expected_output": "The division is: 6"
+    }
+  },
+  {
+    "input": "Write a Bash script to calculate the remainder of division of two numbers using the modulus operator.",
+    "output": {
+      "script": "#!/bin/bash\nnum1=30\nnum2=20\nmod=$(($num1%$num2))\necho \"The remainder is: $mod\"",
+      "expected_output": "The remainder is: 10"
+    }
+  },
+  {
+    "input": "Write a Bash one-liner script to generate a random number between 1 and 50 using $RANDOM.",
+    "output": {
+      "script": "#!/bin/bash\necho $((1 + RANDOM % 50))",
+      "mechanism": "Generates a pseudo-random integer and applies modulo 50 with an offset of 1."
+    }
+  },
+  {
+    "input": "Write a Bash script to generate a random number between two user-specified numbers (min and max).",
+    "output": {
+      "script": "#!/bin/bash\nread -p \"Enter minimum range:\" min\nread -p \"Enter maximum range:\" max\nr_num=$(($RANDOM % ($max - $min + 1) + $min))\necho \"Random Number: $r_num\""
+    }
+  },
+  {
+    "input": "Write a Bash script performing addition, subtraction, multiplication, and division directly inside echo commands.",
+    "output": {
+      "script": "#!/bin/bash\nread -p \"Enter a number:\" num1\nread -p \"Enter a smaller number:\" num2\necho \"Addition: $(($num1 + $num2))\"\necho \"Subtraction: $(($num1 - $num2))\"\necho \"Multiplication: $(($num1 * $num2))\"\necho \"Division: $(($num1 / $num2))\""
+    }
+  },
+  {
+    "input": "Write a Bash script that performs bitwise AND, OR, or XOR on two input numbers based on user selection.",
+    "output": {
+      "script": "#!/bin/bash\nread -p \"Enter two numbers: \" num1 num2\nread -p \"Enter operation to perform (AND, OR, NOT): \" op\ncase $op in\n  AND) echo \"Result: $num1 & $num2 = $((num1&num2))\" ;;\n  OR) echo \"Result: $num1 | $num2 = $((num1|num2))\" ;;\n  NOT) echo \"Result: $num1 ^ $num2 = $((num1^num2))\" ;;\n  *) echo \"Invalid operator.\" ;;\nesac"
+    }
+  },
+  {
+    "input": "Write a Bash script to check whether an input integer is even or odd.",
+    "output": {
+      "script": "#!/bin/bash\nread -p \"Enter a number:\" num\nif [ $((num % 2)) -eq 0 ]\nthen\n  echo \"The number is even\"\nelse\n  echo \"The number is odd\"\nfi"
+    }
+  },
+  {
+    "input": "Write a Bash script using if-elif-else to perform basic arithmetic (+, -, *, /) based on user operator selection.",
+    "output": {
+      "script": "#!/bin/bash\nread -p \"Enter a number:\" num1\nread -p \"Enter a smaller number:\" num2\nread -p \"Enter an operand:\" op\nif [ \"$op\" == \"+\" ]; then\n  echo \"$num1 + $num2 = $((num1+num2))\"\nelif [ \"$op\" == \"-\" ]; then\n  echo \"$num1 - $num2 = $((num1-num2))\"\nelif [ \"$op\" == \"*\" ]; then\n  echo \"$num1 * $num2 = $((num1*num2))\"\nelif [ \"$op\" == \"/\" ]; then\n  echo \"$num1 / $num2 = $((num1/num2))\"\nelse\n  echo \"Operator not listed\"\nfi"
+    }
+  },
+  {
+    "input": "Write a Bash script using case to evaluate logical AND, OR, and NOT on boolean string inputs.",
+    "output": {
+      "script": "#!/bin/bash\nread -p \"Enter two values (true/false): \" val1 val2\nread -p \"Enter an operation (and/or/not): \" op\ncase $op in\n  and)\n    if [[ $val1 == true && $val2 == true ]]; then echo \"Result: true\"; else echo \"Result: false\"; fi ;;\n  or)\n    if [[ $val1 == true || $val2 == true ]]; then echo \"Result: true\"; else echo \"Result: false\"; fi ;;\n  not)\n    if [[ $val1 == true ]]; then echo \"Result: false\"; else echo \"Result: true\"; fi ;;\n  *) echo \"Invalid operator.\" ;;\nesac"
+    }
+  },
+  {
+    "input": "Write a Bash script that validates an email address using regex in [[ =~ ]].",
+    "output": {
+      "script": "#!/bin/bash\nread -p \"Enter an email ID: \" id\nif [[ $id =~ ^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$ ]]; then\n  echo \"This is a valid email ID!\"\nelse\n  echo \"This is not a valid email ID!\"\nfi"
+    }
+  },
+  {
+    "input": "Write a Bash script to check if a user input string is a valid HTTP/HTTPS URL using regular expressions.",
+    "output": {
+      "script": "#!/bin/bash\nread -p \"Enter a URL: \" url\nif [[ $url =~ ^(http|https)://[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$ ]]; then\n  echo \"This is a valid URL!\"\nelse\n  echo \"This is not a valid URL!\"\nfi"
+    }
+  },
+  {
+    "input": "Write a Bash script to check if a given number is positive, negative, or zero.",
+    "output": {
+      "script": "#!/bin/bash\nread -p \"Enter a number:\" num\nif [ $num -gt 0 ]; then\n  echo \"The number is Positive!\"\nelif [ $num -lt 0 ]; then\n  echo \"The number is Negative!\"\nelse\n  echo \"The number is Zero!!\"\nfi"
+    }
+  },
+  {
+    "input": "Write a Bash script to check if a specified file exists and is writable.",
+    "output": {
+      "script": "#!/bin/bash\nread -p \"Enter a File Name:\" fname\nif [ -w \"$fname\" ]; then\n  echo \"The File $fname is writable.\"\nelse\n  echo \"The File $fname is not writable.\"\nfi"
+    }
+  },
+  {
+    "input": "Write a Bash script to check if a file exists using the -f test operator.",
+    "output": {
+      "script": "#!/bin/bash\nread -p \"Enter a File Name:\" fname\nif [ ! -f \"$fname\" ]; then\n  echo \"The File $fname does not exist!\"\n  exit 1\nfi\necho \"The File $fname exists.\""
+    }
+  },
+  {
+    "input": "Write a Bash script to check whether a directory exists using the -d operator.",
+    "output": {
+      "script": "#!/bin/bash\nread -p \"Enter a Directory Name: \" dir\nif [ ! -d \"$dir\" ]; then\n  echo \"The directory $dir does not exist!\"\n  exit 1\nfi\necho \"The directory $dir exists.\""
+    }
+  },
+  {
+    "input": "Write a Bash command demonstrating echo with escape sequences enabled to output text on multiple lines.",
+    "output": {
+      "command": "echo -e 'Hi\\nthere!'",
+      "expected_output": "Hi\nthere!"
+    }
+  },
+  {
+    "input": "Write a Bash script showing how to temporarily modify and restore the Internal Field Separator (IFS) to parse comma-separated data.",
+    "output": {
+      "script": "#!/bin/bash\nold_IFS=$IFS\nIFS=,\nread val1 val2 val3 <<< \"5,60,70\"\necho \"1st value: $val1\"\necho \"2nd value: $val2\"\necho \"3rd value: $val3\"\nIFS=$old_IFS"
+    }
+  },
+  {
+    "input": "Write a Bash script taking two command line arguments and outputting their sum.",
+    "output": {
+      "script": "#!/bin/bash\nsum=$(($1 + $2))\necho \"The sum of $1 and $2 is $sum\"",
+      "run_example": "bash misc_example3.sh 20 30",
+      "expected_output": "The sum of 20 and 30 is 50"
+    }
+  },
+  {
+    "input": "Write a Bash script to securely read password input without echoing characters to the terminal.",
+    "output": {
+      "script": "#!/bin/bash\nread -sp \"Enter your password: \" pass\necho -e \"\\nYour password is: $pass\""
+    }
+  },
+  {
+    "input": "Write a Bash script that enforces a 5-second timeout on reading user input.",
+    "output": {
+      "script": "#!/bin/bash\nread -t 5 -p \"Enter your name within 5 seconds: \" name\necho -e \"\\nHello, $name\""
+    }
+  },
+  {
+    "input": "Write a Bash script to calculate the length of a string variable using parameter expansion.",
+    "output": {
+      "script": "#!/bin/bash\nstr=\"My name is Tom!\"\nlen=${#str}\necho \"The length of the string is: $len\"",
+      "expected_output": "The length of the string is: 15"
+    }
+  },
+  {
+    "input": "Write a Bash script to compare two strings for equality using ==.",
+    "output": {
+      "script": "#!/bin/bash\nstring1=\"hello\"\nstring2=\"world\"\nif [ \"$string1\" == \"$string2\" ]; then\n  echo \"The strings are equal.\"\nelse\n  echo \"The strings are not equal.\"\nfi"
+    }
+  },
+  {
+    "input": "Write a Bash script that converts all uppercase letters in an input string to lowercase using tr.",
+    "output": {
+      "script": "#!/bin/bash\nread -p \"Enter a string: \" str\nconverted=$(echo \"$str\" | tr '[:upper:]' '[:lower:]')\necho \"Converted String: $converted\""
+    }
+  },
+  {
+    "input": "Write a Bash script to remove all whitespace characters from a string using pattern replacement.",
+    "output": {
+      "script": "#!/bin/bash\nstr=\"  Hello from Linuxsimply ! \"\nclean_str=${str// /}\necho \"The resultant string: $clean_str\"",
+      "expected_output": "The resultant string: HellofromLinuxsimply!"
+    }
+  },
+  {
+    "input": "Write a Bash script to reverse a given string using rev.",
+    "output": {
+      "script": "#!/bin/bash\nstr=\"Linuxsimply\"\nreversed=$(echo \"$str\" | rev)\necho \"The reversed string: $reversed\"",
+      "expected_output": "The reversed string: ylpmisxunil"
+    }
+  },
+  {
+    "input": "Write a Bash script to reverse the order of words in a sentence using awk.",
+    "output": {
+      "script": "#!/bin/bash\nsentence=\"Hello from Linuxsimply!!\"\nr_sentence=$(echo \"$sentence\" | awk '{ for(i=NF; i>0; i--) printf(\"%s \", $i); print \"\" }')\necho \"The reversed sentence is: $r_sentence\""
+    }
+  },
+  {
+    "input": "Write a Bash script that capitalizes only the first letter of a word.",
+    "output": {
+      "script": "#!/bin/bash\nstr=\"linuxsimply!!\"\ncap_str=$(echo \"${str:0:1}\" | tr '[:lower:]' '[:upper:]')${str:1}\necho \"The capitalized word is: $cap_str\"",
+      "expected_output": "The capitalized word is: Linuxsimply!!"
+    }
+  },
+  {
+    "input": "Write a Bash script to replace the first occurrence of a specific word in a sentence using parameter replacement.",
+    "output": {
+      "script": "#!/bin/bash\nread -p \"Enter a sentence: \" str1\nread -p \"Enter the word to be replaced: \" str2\nread -p \"Enter the new word: \" str3\necho \"Modified sentence: ${str1/$str2/$str3}\""
+    }
+  },
+  {
+    "input": "Write a Bash script using an until loop to print numbers from 5 down to 1.",
+    "output": {
+      "script": "#!/bin/bash\nn=5\nuntil [ $n -eq 0 ]\ndo\n  echo $n\n  n=$((n - 1))\ndone"
+    }
+  },
+  {
+    "input": "Write a Bash script using a for loop to print all even numbers between 1 and 10.",
+    "output": {
+      "script": "#!/bin/bash\nfor (( i=1; i<=10; i++ ))\ndo\n  if [ $((i % 2)) -eq 0 ]; then\n    echo $i\n  fi\ndone",
+      "expected_output": "2\n4\n6\n8\n10"
+    }
+  },
+  {
+    "input": "Write a Bash script that reads a number and prints its multiplication table up to 10.",
+    "output": {
+      "script": "#!/bin/bash\nread -p \"Enter a number: \" num\nfor (( i=1; i<=10; i++ ))\ndo\n  echo \"$num x $i = $((num * i))\"\ndone"
+    }
+  },
+  {
+    "input": "Write a Bash script that calculates the sum of all digits of an input integer.",
+    "output": {
+      "script": "#!/bin/bash\nread -p \"Enter a number: \" num\nsum=0\nwhile [ $num -gt 0 ]\ndo\n  dig=$((num % 10))\n  sum=$((sum + dig))\n  num=$((num / 10))\ndone\necho \"The sum of digits of the given number: $sum\""
+    }
+  },
+  {
+    "input": "Write a Bash script to calculate the factorial of a given integer using a for loop.",
+    "output": {
+      "script": "#!/bin/bash\nread -p \"Enter a number: \" num\ntemp=1\nfor (( i=1; i<=num; i++ ))\ndo\n  temp=$((temp * i))\ndone\necho \"The factorial of $num is: $temp\""
+    }
+  },
+  {
+    "input": "Write a Bash script to calculate the sum of the first n natural numbers.",
+    "output": {
+      "script": "#!/bin/bash\nread -p \"Enter a number: \" num\nsum=0\nfor (( i=1; i<=num; i++ ))\ndo\n  sum=$((sum + i))\ndone\necho \"Sum of first $num numbers: $sum\""
+    }
+  },
+  {
+    "input": "Write a Bash script to iterate over each element of an indexed array and print them.",
+    "output": {
+      "script": "#!/bin/bash\narr=(\"mango\" \"grape\" \"apple\" \"cherry\" \"orange\")\nfor item in \"${arr[@]}\"; do\n  echo $item\ndone"
+    }
+  },
+  {
+    "input": "Write a Bash script to find both the smallest and largest numbers in an array.",
+    "output": {
+      "script": "#!/bin/bash\narr=(24 27 84 11 99)\ns=100000\nl=0\nfor num in \"${arr[@]}\"\ndo\n  if [ $num -lt $s ]; then s=$num; fi\n  if [ $num -gt $l ]; then l=$num; fi\ndone\necho \"The smallest element: $s\"\necho \"The largest: $l\""
+    }
+  },
+  {
+    "input": "Write a Bash script to sort an array of integers in ascending order.",
+    "output": {
+      "script": "#!/bin/bash\narr=(24 27 84 11 99)\nsorted_arr=($(echo \"${arr[*]}\" | tr ' ' '\\n' | sort -n | tr '\\n' ' '))\necho \"Sorted array: ${sorted_arr[*]}\""
+    }
+  },
+  {
+    "input": "Write a Bash script to remove an element matching a specific value from an array using pattern substitution.",
+    "output": {
+      "script": "#!/bin/bash\narr=(24 27 84 11 99)\nread -p \"Enter an element to remove: \" val\narr=(\"${arr[@]/$val/}\")\necho \"Resultant array: ${arr[*]}\""
+    }
+  },
+  {
+    "input": "Write a Bash script to insert an element into an array at a user-specified index.",
+    "output": {
+      "script": "#!/bin/bash\narr=(24 27 84 11 99)\nread -p \"Enter an element to insert: \" new_val\nread -p \"Enter the index to insert the element: \" index\narr=(\"${arr[@]:0:$index}\" \"$new_val\" \"${arr[@]:$index}\")\necho \"The updated array: ${arr[@]}\""
+    }
+  },
+  {
+    "input": "Write a Bash script demonstrating array slicing using parameter offset and length syntax.",
+    "output": {
+      "script": "#!/bin/bash\narr=(24 27 84 11 99)\nread -p \"Enter 1st index of slice: \" index1\nread -p \"Enter length of slice: \" length\nsliced_arr=(\"${arr[@]:$index1:$length}\")\necho \"The sliced array: ${sliced_arr[@]}\""
+    }
+  },
+  {
+    "input": "Write a Bash script to calculate the arithmetic average of numbers stored in an array.",
+    "output": {
+      "script": "#!/bin/bash\necho \"Enter an array of numbers (separated by space):\"\nread -a arr\nsum=0\nfor i in \"${arr[@]}\"; do\n  sum=$((sum + i))\ndone\navg=$((sum / ${#arr[@]}))\necho \"Average of the array elements: $avg\""
+    }
+  },
+  {
+    "input": "Write a Bash snippet to determine the total number of elements in an array.",
+    "output": {
+      "code": "arr=(24 27 84 11 99)\nlen=${#arr[@]}\necho \"The length of the array: $len\"",
+      "expected_output": "The length of the array: 5"
+    }
+  },
+  {
+    "input": "Write a Bash function that checks whether an input string is a palindrome.",
+    "output": {
+      "script": "#!/bin/bash\nPalindrome () {\n  s=$1\n  if [ \"$(echo $s | rev)\" == \"$s\" ]; then\n    echo \"The string is a Palindrome\"\n  else\n    echo \"The string is not a palindrome\"\n  fi\n}\nread -p \"Enter a string: \" str\nPalindrome \"$str\""
+    }
+  },
+  {
+    "input": "Write a Bash function that checks whether a given positive integer is prime.",
+    "output": {
+      "script": "#!/bin/bash\nPrime () {\n  num=$1\n  if [ $num -lt 2 ]; then\n    echo \"The number $num is Not Prime\"\n    return\n  fi\n  for (( i=2; i<=num/2; i++ ))\n  do\n    if [ $((num % i)) -eq 0 ]; then\n      echo \"The number $num is Not Prime\"\n      return\n    fi\n  done\n  echo \"The number $num is Prime\"\n}\nread -p \"Enter a number: \" num\nPrime \"$num\""
+    }
+  },
+  {
+    "input": "Write a Bash function to convert a temperature value from Fahrenheit to Celsius.",
+    "output": {
+      "script": "#!/bin/bash\nCelsius () {\n  f=$1\n  c=$(( ($f - 32) * 5 / 9 ))\n  echo \"Temperature in Celsius = ${c}C\"\n}\nread -p \"Enter temperature in Fahrenheit: \" f\nCelsius $f"
+    }
+  },
+  {
+    "input": "Write a Bash function to calculate the area of a rectangle given its height and width.",
+    "output": {
+      "script": "#!/bin/bash\nArea () {\n  width=$1\n  height=$2\n  area=$((width * height))\n  echo \"Area of the rectangle is: $area\"\n}\nread -p \"Enter height and width: \" h w\nArea $w $h"
+    }
+  },
+  {
+    "input": "Write a Bash function using bc to calculate the area of a circle with floating-point precision.",
+    "output": {
+      "script": "#!/bin/bash\nArea () {\n  radius=$1\n  area=$(echo \"scale=2; 3.14 * $radius * $radius\" | bc)\n  echo \"Area of a circle with radius $radius is $area.\"\n}\nread -p \"Enter radius of the circle: \" r\nArea $r"
+    }
+  },
+  {
+    "input": "Write a Bash grading function that maps numerical scores (0-100) into letter grades (A+, A, B, C, D, F).",
+    "output": {
+      "script": "Grade() {\n  score=$1\n  if (( score >= 80 )); then grade=\"A+\"\n  elif (( score >= 70 )); then grade=\"A\"\n  elif (( score >= 60 )); then grade=\"B\"\n  elif (( score >= 50 )); then grade=\"C\"\n  elif (( score >= 40 )); then grade=\"D\"\n  else grade=\"F\"; fi\n  echo \"The grade for mark $score is $grade\"\n}\nread -p \"Enter a score: \" s\nGrade $s"
+    }
+  },
+  {
+    "input": "Write a Bash script to search for a whole-word pattern inside a file and print matching lines with line numbers using grep.",
+    "output": {
+      "script": "#!/bin/bash\nread -p \"Enter filename: \" filename\nread -p \"Enter a pattern to search for: \" pattern\ngrep -w -n \"$pattern\" \"$filename\"\nif [ $? -eq 1 ]; then\n  echo \"Pattern did not match.\"\nfi"
+    }
+  },
+  {
+    "input": "Write a Bash script that replaces all occurrences of a search pattern with a new string in a specified file using sed -i.",
+    "output": {
+      "script": "#!/bin/bash\nread -p \"Enter filename: \" filename\nread -p \"Enter a pattern to replace: \" pattern\nread -p \"Enter new pattern: \" new_pattern\nif grep -q \"$pattern\" \"$filename\"; then\n  sed -i \"s/$pattern/$new_pattern/g\" \"$filename\"\n  echo \"Updated Lines:\"\n  grep -w -n \"$new_pattern\" \"$filename\"\nelse\n  echo \"Error! Pattern did not match.\"\nfi"
+    }
+  },
+  {
+    "input": "Write a Bash script to accept multiple filenames as a single string and output their contents sequentially using cat.",
+    "output": {
+      "script": "#!/bin/bash\nread -p \"Enter the file names: \" files\nIFS=' ' read -ra array <<< \"$files\"\nfor file in \"${array[@]}\"; do\n  if [ -e \"$file\" ]; then\n    echo \"Contents of $file:\"\n    cat \"$file\"\n  else\n    echo \"Error: $file does not exist\"\n  fi\ndone"
+    }
+  },
+  {
+    "input": "Write a Bash script that verifies a source file exists before copying it to a destination path using cp and readlink.",
+    "output": {
+      "script": "#!/bin/bash\nread -p \"Enter the file name: \" file\nread -p \"Enter destination path: \" dest\nif [ -e \"$file\" ]; then\n  cp \"$file\" \"$dest\"\n  file_location=$(readlink -f \"$dest\")\n  echo \"A copy of $file is now located at: $file_location\"\nelse\n  echo \"Error: $file does not exist\"\nfi"
+    }
+  },
+  {
+    "input": "Write a Bash script to create a new file and write multi-line or single-line text into it from standard input.",
+    "output": {
+      "script": "#!/bin/bash\nread -p \"Enter the file name: \" file\necho \"Enter text to write:\"\nread text\necho \"$text\" > \"$file\"\necho \"The File $file is created!\""
+    }
+  },
+  {
+    "input": "Write a Bash script to compare the contents of two files using cmp -s to test if they are identical.",
+    "output": {
+      "script": "#!/bin/bash\nread -p \"Enter the 1st file name: \" file1\nread -p \"Enter the 2nd file name: \" file2\nif [ ! -f \"$file1\" ] || [ ! -f \"$file2\" ]; then\n  echo \"Error! One of the files does not exist.\"\n  exit 1\nfi\nif cmp -s \"$file1\" \"$file2\"; then\n  echo \"The Files $file1 and $file2 are identical.\"\nelse\n  echo \"The Files $file1 and $file2 are different.\"\nfi"
+    }
+  },
+  {
+    "input": "Write a Bash script to safely delete a file only after verifying that it exists in the filesystem.",
+    "output": {
+      "script": "#!/bin/bash\nread -p \"Enter the file name for deletion: \" file\nif [ -f \"$file\" ]; then\n  rm \"$file\"\n  echo \"The file $file deleted successfully!\"\nelse\n  echo \"Error! The file $file does not exist.\"\nfi"
+    }
+  },
+  {
+    "input": "Write a Bash script to rename a specified file using mv after checking its existence.",
+    "output": {
+      "script": "#!/bin/bash\nread -p \"Enter the file name: \" file\nread -p \"Enter new file name: \" new_file\nif [ -f \"$file\" ]; then\n  mv \"$file\" \"$new_file\"\n  echo \"The file $file has been renamed as $new_file!\"\nelse\n  echo \"Error! The file $file does not exist.\"\nfi"
+    }
+  },
+  {
+    "input": "Write a Bash script that evaluates whether a file is readable, writable, and executable by the current user.",
+    "output": {
+      "script": "#!/bin/bash\nread -p \"Enter the file name: \" file\nif [ -f \"$file\" ]; then\n  [ -r \"$file\" ] && echo \"Readable\"\n  [ -w \"$file\" ] && echo \"Writable\"\n  [ -x \"$file\" ] && echo \"Executable\"\nelse\n  echo \"Error! The file $file does not exist.\"\nfi"
+    }
+  },
+  {
+    "input": "Write a Bash script that sets read, write, and execute permissions on a directory for its owner using chmod u+rwx.",
+    "output": {
+      "script": "#!/bin/bash\nread -p \"Enter the directory name: \" dir\nif [ -d \"$dir\" ]; then\n  chmod u+rwx \"$dir\"\n  echo \"Directory permissions have been updated!\"\nelse\n  echo \"Error! The directory $dir does not exist.\"\nfi"
+    }
+  },
+  {
+    "input": "Write a Bash script to change the owner of an existing file using sudo chown.",
+    "output": {
+      "script": "#!/bin/bash\nread -p \"Enter the file name: \" file\nread -p \"Enter file owner name: \" owner\nif [ -f \"$file\" ]; then\n  sudo chown \"$owner\" \"$file\"\n  echo \"Changed file owner to $owner!\"\nelse\n  echo \"Error! The file $file does not exist.\"\nfi"
+    }
+  },
+  {
+    "input": "Write a Bash script to modify the absolute mode permissions of a file (e.g. 777) using sudo chmod.",
+    "output": {
+      "script": "#!/bin/bash\nread -p \"Enter the file name: \" file\nread -p \"Enter new permissions in Absolute Mode: \" permissions\nif [ -f \"$file\" ]; then\n  sudo chmod \"$permissions\" \"$file\"\n  echo \"Permissions for the file $file has been changed!\"\nelse\n  echo \"Error! The file $file does not exist.\"\nfi"
+    }
+  },
+  {
+    "input": "Write a Bash script to check whether a remote host IP is reachable using ping -c 1.",
+    "output": {
+      "script": "#!/bin/bash\nread -p \"Enter remote host IP address: \" ip\nping -c 1 \"$ip\" > /dev/null 2>&1\nif [ $? -eq 0 ]; then\n  echo \"Host is up!\"\nelse\n  echo \"Host is down!\"\nfi"
+    }
+  },
+  {
+    "input": "Write a Bash script that tests if a specific TCP port is open on a remote host using netcat (nc).",
+    "output": {
+      "script": "#!/bin/bash\nread -p \"Enter host address: \" HOST\nread -p \"Enter port number: \" PORT\nnc -z -v -w5 \"$HOST\" \"$PORT\" > /dev/null 2>&1\nif [ $? -eq 0 ]; then\n  echo \"Port $PORT on $HOST is open\"\nelse\n  echo \"Port $PORT on $HOST is closed\"\nfi"
+    }
+  },
+  {
+    "input": "Write a Bash script to check global network connectivity using ping -qc1W 1.",
+    "output": {
+      "script": "#!/bin/bash\nread -p \"Enter a host address: \" HOST\nif ping -qc1W 1 \"$HOST\" > /dev/null 2>&1; then\n  echo \"Internet connection is up\"\nelse\n  echo \"Internet connection is down\"\nfi"
+    }
+  },
+  {
+    "input": "Write a Bash script to automate setting an IP address, subnet mask, default gateway, and DNS entry in resolv.conf.",
+    "output": {
+      "script": "#!/bin/bash\nread -p \"Enter IP address: \" ip_addr\nread -p \"Enter subnet mask: \" subnet_mask\nread -p \"Enter Gateway address: \" gateway\nread -p \"Enter DNS address: \" dns\nsudo ifconfig eth0 \"$ip_addr\" netmask \"$subnet_mask\" up\nsudo route add default gw \"$gateway\"\necho \"nameserver $dns\" | sudo tee /etc/resolv.conf > /dev/null\necho \"Network configuration completed\""
+    }
+  },
+  {
+    "input": "Write a Bash script to check if a specific process is currently running using pgrep.",
+    "output": {
+      "script": "#!/bin/bash\nread -p \"Enter process name: \" process\nif pgrep \"$process\" > /dev/null; then\n  echo \"Process is running.\"\nelse\n  echo \"Process is not running.\"\nfi"
+    }
+  },
+  {
+    "input": "Write a Bash script that launches a process in the background if it is not already running.",
+    "output": {
+      "script": "#!/bin/bash\nread -p \"Enter process name: \" process\nif ! pgrep \"$process\" > /dev/null; then\n  \"$process\" &\n  echo \"The Process $process has now started.\"\nelse\n  echo \"The Process is already running.\"\nfi"
+    }
+  },
+  {
+    "input": "Write a Bash script to stop a running process using pkill.",
+    "output": {
+      "script": "#!/bin/bash\nread -p \"Enter process name: \" process\nif pgrep \"$process\" > /dev/null; then\n  pkill \"$process\"\n  echo \"The Process $process has stopped.\"\nelse\n  echo \"The Process $process is not running.\"\nfi"
+    }
+  },
+  {
+    "input": "Write a Bash script to restart a process gracefully, falling back to kill -9 if it does not terminate within 5 seconds.",
+    "output": {
+      "script": "#!/bin/bash\nread -p \"Enter process name: \" process\npid=$(pgrep -f \"$process\")\nif [ -n \"$pid\" ]; then\n  kill \"$pid\"\n  sleep 5\n  if pgrep -f \"$process\" > /dev/null; then\n    echo \"Process did not exit properly, force killing...\"\n    kill -9 \"$pid\"\n  fi\nfi\nprocess_path=$(which \"$process\")\n\"$process_path\" & echo \"Process restarted.\""
+    }
+  },
+  {
+    "input": "Write a continuous daemon monitoring script in Bash that polls a process every 5 seconds and restarts it if it crashes.",
+    "output": {
+      "script": "#!/bin/bash\nread -p \"Enter process name: \" process\nprocess_path=$(which \"$process\")\nwhile true; do\n  if pgrep \"$process\" > /dev/null; then\n    echo \"The Process $process is running.\"\n  else\n    \"$process_path\" &\n    echo \"The Process $process restarted.\"\n  fi\n  sleep 5\ndone"
+    }
+  },
+  {
+    "input": "Write a Bash command pipeline to display the top 10 CPU-consuming processes.",
+    "output": {
+      "command": "ps -eo pid,%cpu,args | sort -k 2 -r | head -n 11"
+    }
+  },
+  {
+    "input": "Write a Bash command pipeline to display the top 10 memory-consuming processes.",
+    "output": {
+      "command": "ps -eo pid,%mem,args | sort -k 2 -r | head -n 11"
+    }
+  },
+  {
+    "input": "Write a Bash script to terminate all processes owned by a specific user using sudo pkill -u.",
+    "output": {
+      "script": "#!/bin/bash\nread -p \"Enter username: \" user\nsudo pkill -u \"$user\"\necho \"All processes of user $user have been terminated.\""
+    }
+  },
+  {
+    "input": "Write a Bash script that scans processes and kills all processes consuming more than a specified CPU percentage threshold.",
+    "output": {
+      "script": "#!/bin/bash\nread -p \"Enter CPU usage threshold: \" threshold\npids=$(ps -eo pid,%cpu | awk -v t=\"$threshold\" '$2 > t {print $1}')\nif [ -n \"$pids\" ]; then\n  for pid in $pids; do kill \"$pid\"; done\n  echo \"All processes consuming more than $threshold% CPU killed.\"\nelse\n  echo \"There are no process consuming more than $threshold% CPU.\"\nfi"
+    }
+  },
+  {
+    "input": "Write a Bash script that scans processes and kills all processes consuming more than a specified memory threshold.",
+    "output": {
+      "script": "#!/bin/bash\nread -p \"Enter memory usage threshold (in KB): \" threshold\npids=$(ps -eo pid,%mem | awk -v t=\"$threshold\" '$2 > t {print $1}')\nif [ -n \"$pids\" ]; then\n  for pid in $pids; do kill \"$pid\"; done\n  echo \"All processes consuming more than $threshold KB memory killed.\"\nelse\n  echo \"There are no process consuming more than $threshold KB memory.\"\nfi"
+    }
+  },
+  {
+    "input": "Write a Bash one-liner script to count the number of currently logged-in users.",
+    "output": {
+      "script": "#!/bin/bash\nusers=$(who | wc -l)\necho \"Number of currently logged-in users: $users\""
+    }
+  },
+  {
+    "input": "Write a Bash script to display OS name, release, version ID, and hardware architecture.",
+    "output": {
+      "script": "#!/bin/bash\nos_name=$(uname -s)\nos_release=$(uname -r)\nos_version=$(cat /etc/*-release | grep VERSION_ID | cut -d '\"' -f 2)\nos_arch=$(uname -m)\necho \"OS Name: $os_name\"\necho \"OS Release: $os_release\"\necho \"OS Version: $os_version\"\necho \"OS Architecture: $os_arch\""
+    }
+  },
+  {
+    "input": "Write a Bash command using free -m and awk to output current system memory usage percentage.",
+    "output": {
+      "script": "#!/bin/bash\nmem=$(free -m | awk 'NR==2{printf \"%.2f%%\", $3*100/$2}')\necho \"Current Memory Usage: $mem\""
+    }
+  },
+  {
+    "input": "Write a Bash command using df -h and awk to display disk utilization percentage on the root filesystem.",
+    "output": {
+      "script": "#!/bin/bash\ndisk=$(df -h | awk '$NF==\"/\"{printf \"%s\", $5}')\necho \"Current Disk Usage: $disk\""
+    }
+  },
+  {
+    "input": "Write a Bash script to extract and display the host IP address, default gateway, and nameserver.",
+    "output": {
+      "script": "#!/bin/bash\nip=$(hostname -I | awk '{print $1}')\ngw=$(ip route | awk '/default/ {print $3}')\ndns=$(grep \"nameserver\" /etc/resolv.conf | awk '{print $2}' | head -n 1)\necho \"IP Address: $ip\"\necho \"Gateway: $gw\"\necho \"DNS Server: $dns\""
+    }
+  },
+  {
+    "input": "Write a Bash script using uptime and awk to format and print current system uptime.",
+    "output": {
+      "script": "#!/bin/bash\nuptime_val=$(uptime | awk '{print $1,$2,$3}' | sed 's/,//')\necho \"Uptime: $uptime_val\""
+    }
+  },
+  {
+    "input": "Write a Bash script to extract and display the 1, 5, and 15-minute system load averages from uptime.",
+    "output": {
+      "script": "#!/bin/bash\nloadavg=$(uptime | awk -F'load average:' '{print $2}')\necho \"Load Average: $loadavg\""
+    }
+  },
+  {
+    "input": "Write a Bash command to check machine hardware architecture using uname -m.",
+    "output": {
+      "script": "#!/bin/bash\narch=$(uname -m)\necho \"System Architecture: $arch\""
+    }
+  },
+  {
+    "input": "Write a Bash script to count the total number of regular files in the filesystem using find / -type f.",
+    "output": {
+      "script": "#!/bin/bash\ncount=$(find / -type f 2>/dev/null | wc -l)\necho \"Number of files in the system: $count.\""
+    }
+  },
+  {
+    "input": "Write an automated directory backup script in Bash that archives a folder into a tar.gz file labeled with current date.",
+    "output": {
+      "script": "#!/bin/bash\nread -p \"Enter path of directory to backup: \" source_dir\nread -p \"Enter destination path for backup: \" backup_dir\ndate=$(date +%Y-%m-%d)\nbackup_file=\"backup-$date.tar.gz\"\nmkdir -p \"$backup_dir\"\ntar -czf \"$backup_dir/$backup_file\" \"$source_dir\"\necho \"Completed Creating backup at: $backup_dir.\""
+    }
+  },
+  {
+    "input": "Write a Bash monitoring script that appends an alert to a log file if any disk partition exceeds a user-defined threshold percentage.",
+    "output": {
+      "script": "#!/bin/bash\nread -p \"Enter filename to write alert: \" file\nread -p \"Enter disk space threshold: \" threshold\ntouch \"$file\"\ndf -H | grep -vE \"^Filesystem|tmpfs|cdrom\" | awk '{print $5 \" \" $1}' | while read output; do\n  usage=$(echo \"$output\" | awk '{print $1}' | cut -d'%' -f1)\n  if [ \"$usage\" -ge \"$threshold\" ]; then\n    partition=$(echo \"$output\" | awk '{print $2}')\n    echo \"Alert for $partition: Almost out of disk space ($usage%) as on $(date)\" >> \"$file\"\n  fi\ndone"
+    }
+  },
+  {
+    "input": "Write a Bash script to create a new user account with an encrypted password, personal home directory, and sudo group membership.",
+    "output": {
+      "script": "#!/bin/bash\nread -p \"Enter username: \" username\nread -p \"Enter password: \" password\nsudo useradd -m -s /bin/bash -p $(openssl passwd -1 \"$password\") \"$username\"\nif [ $? -eq 0 ]; then\n  sudo usermod -a -G sudo \"$username\"\n  echo \"User $username created successfully and added to sudo group!\"\nelse\n  echo \"Error while creating user!\"\nfi"
+    }
+  },
+  {
+    "input": "Write a continuous network monitoring script that polls and prints received (RX) and transmitted (TX) packet counts every 10 seconds.",
+    "output": {
+      "script": "#!/bin/bash\nread -p \"Enter network interface to monitor traffic (ex. eth0): \" net\nwhile true; do\n  rx=$(ifconfig \"$net\" | grep \"RX packets\" | awk '{print $3 \" packets\"}')\n  tx=$(ifconfig \"$net\" | grep \"TX packets\" | awk '{print $3 \" packets\"}')\n  echo \"$(date) RX: $rx, TX: $tx\"\n  sleep 10\ndone"
+    }
+  },
+  {
+    "input": "Write a Bash script to monitor overall CPU and memory usage concurrently every 10 seconds.",
+    "output": {
+      "script": "#!/bin/bash\nwhile true; do\n  cpu=$(top -bn1 | grep \"Cpu(s)\" | sed \"s/.*, *\\([0-9.]*\\)%* id.*/\\1/\" | awk '{print 100 - $1\"%\"}')\n  mem=$(free -m | awk 'NR==2{printf \"%.2f%%\", $3*100/$2}')\n  echo \"$(date) CPU Usage: $cpu, Memory Usage: $mem\"\n  sleep 10\ndone"
+    }
+  },
+  {
+    "input": "Write a script that creates a customized command script, sets execution permissions, and exports its parent directory to $PATH.",
+    "output": {
+      "script": "#!/bin/bash\nread -p \"Enter a name for the command: \" my_comm\necho \"Enter commands to write on script:\"\nread comm\nread -p \"Enter path to the directory containing the command: \" comm_path\necho \"#!/bin/bash\" > \"$comm_path/$my_comm.sh\"\necho \"$comm\" >> \"$comm_path/$my_comm.sh\"\nchmod +x \"$comm_path/$my_comm.sh\"\nexport PATH=\"$PATH:$comm_path\"\necho \"A script called $my_comm has been created and added to PATH.\""
+    }
+  },
+  {
+    "input": "Write a Bash script that adds a recurring command to crontab using a custom cron interval schedule.",
+    "output": {
+      "script": "#!/bin/bash\nread -p \"Enter command to run: \" com\ncommand_to_run=$(which \"$com\")\nread -p \"Enter interval (m h dom mon dow): \" interval\n(crontab -l 2>/dev/null; echo \"$interval $command_to_run\") | sort -u | crontab -\necho \"Command added to crontab and will run at $interval\""
+    }
+  },
+  {
+    "input": "Write a Bash script that reads a list of URLs line-by-line from a text file and downloads each asset via curl.",
+    "output": {
+      "script": "#!/bin/bash\nread -p \"Enter the filename containing URLs: \" url_file\nwhile read -r url; do\n  filename=$(basename \"$url\")\n  curl -o \"$filename\" \"$url\"\n  echo \"Completed Download $filename\"\ndone < \"$url_file\"\necho \"All files downloaded successfully!\""
+    }
+  },
+  {
+    "input": "Write a Bash script that organizes loose files in a directory into Documents, Images, Music, Videos, and Others folders by extension.",
+    "output": {
+      "script": "#!/bin/bash\nread -p \"Enter source directory: \" source_dir\nread -p \"Enter destination directory: \" dest_dir\nmkdir -p \"${dest_dir}/Documents\" \"${dest_dir}/Images\" \"${dest_dir}/Music\" \"${dest_dir}/Videos\" \"${dest_dir}/Others\"\nfor file in \"${source_dir}\"/*; do\n  if [ -f \"${file}\" ]; then\n    extension=\"${file##*.}\"\n    case \"${extension}\" in\n      txt|pdf|doc|docx) mv \"${file}\" \"${dest_dir}/Documents\" ;;\n      jpg|jpeg|png|gif) mv \"${file}\" \"${dest_dir}/Images\" ;;\n      mp3|wav) mv \"${file}\" \"${dest_dir}/Music\" ;;\n      mp4|avi|mkv) mv \"${file}\" \"${dest_dir}/Videos\" ;;\n      *) mv \"${file}\" \"${dest_dir}/Others\" ;;\n    esac\n  fi\ndone\necho \"Files organized successfully!\""
+    }
+  },
+  {
+    "input": "Explain how Linux Shell acts as a command interpreter between user commands and the kernel.",
+    "output": {
+      "definition": "The shell is a command-line interpreter (CLI) that translates text commands into system calls and binary representations understood by the Linux kernel.",
+      "common_shells": ["Bash (Bourne Again Shell)", "Csh (C Shell)", "Ksh (Korn Shell)", "Sh (Bourne Shell)"]
+    }
+  },
+  {
+    "input": "What happens at the operating system level when running a piped command like 'cat file.txt | grep error'?",
+    "output": {
+      "system_calls": ["pipe()", "fork()", "dup2()", "execve()"],
+      "mechanics": "The kernel allocates an anonymous unidirectional memory buffer via pipe(). The shell creates two child processes via fork(). dup2() redirects cat stdout to pipe write-end, and grep stdin to pipe read-end. execve() executes both commands concurrently."
+    }
+  },
+  {
+    "input": "Why is 'set -euo pipefail' recommended in robust production Bash scripts?",
+    "output": {
+      "-e": "Causes the script to exit immediately if any command returns a non-zero exit status.",
+      "-u": "Treats unset or unassigned variables as an error and terminates execution.",
+      "-o pipefail": "Prevents errors in a pipeline from being masked by returning the exit status of the rightmost failed command."
+    }
+  },
+  {
+    "input": "Write a Bash script using a trap statement to delete temporary directories and files on SIGINT or SIGTERM signals.",
+    "output": {
+      "script": "#!/usr/bin/env bash\nset -euo pipefail\nTMPDIR=$(mktemp -d)\ntrap 'rm -rf \"$TMPDIR\"; echo \"Cleanup completed.\"' EXIT SIGINT SIGTERM\necho \"Working inside $TMPDIR...\""
+    }
+  },
+  {
+    "input": "Explain the difference between running a script as './script.sh' versus sourcing it with 'source script.sh'.",
+    "output": {
+      "execution": "Spawns a new subshell process via fork() and execve(). Modifications to variables or working directory terminate with the subshell.",
+      "sourcing": "Executes script lines within the current shell process without fork(). Variable assignments and directory changes persist in the active session."
+    }
+  },
+  {
+    "input": "Write a Bash script that extracts and computes the sum of command-line positional parameters using a shift loop.",
+    "output": {
+      "script": "#!/bin/bash\nsum=0\nwhile [ $# -gt 0 ]; do\n  sum=$((sum + $1))\n  shift\ndone\necho \"Total sum: $sum\""
+    }
+  },
+  {
+    "input": "Write a Bash snippet to test whether a file is a symbolic link using test operators.",
+    "output": {
+      "script": "if [ -L \"$file\" ]; then\n  echo \"$file is a symbolic link.\"\nelse\n  echo \"$file is not a symbolic link.\"\nfi"
+    }
+  }
+]
