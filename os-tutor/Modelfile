@@ -1,4 +1,4 @@
-FROM ./Qwen3-4B.Q4_K_M.gguf
+FROM ./Qwen3-1.7B.Q4_K_M.gguf
 
 TEMPLATE """{{- if .System }}<|im_start|>system
 {{ .System }}<|im_end|>
@@ -11,9 +11,13 @@ TEMPLATE """{{- if .System }}<|im_start|>system
 
 """
 
-SYSTEM "You are an OS and shell tutor. Explain step by step and be accurate."
+SYSTEM "You are an OS and shell tutor. Answer in at most 5-6 sentences or a short list. Be concise and accurate."
 
 PARAMETER temperature 0.7
 PARAMETER top_p 0.8
 PARAMETER top_k 20
+PARAMETER num_ctx 2048
+PARAMETER num_predict 300
+PARAMETER num_thread 6
 PARAMETER stop "<|im_end|>"
+PARAMETER stop "<|im_start|>"
